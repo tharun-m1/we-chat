@@ -1,4 +1,6 @@
 const express = require("express");
+const { createServer } = require("node:http");
+const { Server } = require("socket.io");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -6,6 +8,10 @@ const authRoutes = require("./routes/authRoutes");
 require("dotenv").config();
 
 const app = express();
+const server = createServer(app);
+const io = new Server(server, {
+  connectionStateRecovery: {},
+});
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -27,7 +33,7 @@ app.use((err, req, res, next) => {
   });
 });
 // ======================================================================
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   mongoose
     .connect(process.env.MONGODB_URL)
     .then(() => {
