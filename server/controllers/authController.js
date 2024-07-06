@@ -48,9 +48,7 @@ async function Login(req, res, next) {
     const payload = {
       userId: user._id,
     };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: 60 * 60 * 2,
-    });
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
     return res.status(200).json({
       status: 200,
       message: "Login Successful!",

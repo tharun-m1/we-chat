@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
+const mailTo = require("./services/mailer.js");
 require("dotenv").config();
 
 const app = express();
