@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const errorHandler = require("../utils/errorHandler");
 
-const userExists = async (req, res, next) => {
+const userAlreadyExists = async (req, res, next) => {
   try {
     const { email } = req.body;
     const userFound = await User.findOne({ email });
@@ -15,4 +15,4 @@ const userExists = async (req, res, next) => {
   }
 };
 
-module.exports = userExists;
+module.exports = userAlreadyExists;
