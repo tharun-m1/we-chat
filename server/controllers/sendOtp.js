@@ -16,6 +16,7 @@ const sendOtp = async (req, res, next) => {
     });
 
     await Otp.create({ otp, token });
+    await main(email, otp);
     return res.status(200).json({
       id: email,
     });
