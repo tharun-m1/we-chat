@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { CreateAccount, SendOTP, VerifyOTP } from "../../api/auth";
@@ -27,20 +27,20 @@ function OTP() {
     }
   };
 
-  const ResendOTP = async () => {
+  const ResendOTP = useCallback(async () => {
     try {
       setLoading(true);
       await SendOTP(location?.state?.email);
-      toast.success("Otp sent!");
+      toast.success("OTP sent!");
       setTimer(60);
       setResend(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.message);
     } finally {
       setLoading(false);
     }
-  };
+  }, [location?.state?.email]);
 
   useEffect(() => {
     timerId.current = setInterval(() => {
