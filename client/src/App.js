@@ -19,14 +19,11 @@ function App() {
             <Route path="/signup" element={<Auth key="signup" />} />
             <Route path="/verify-otp" element={<OTP />} />
             <Route path="/login" element={<Auth key="login" />} />
-            <Route
+            {/* <Route
               path="/chat"
-              element={
-                <ProtectedRoute Component={<Chat />} />
-                //   <Chat />
-                // </ProtectedRoute>
-              }
-            />
+              element={<ProtectedRoute Component={<Chat />} />}
+            /> */}
+            <Route path="/chat" element={<Chat />} />
           </Routes>
         </Suspense>
       </div>

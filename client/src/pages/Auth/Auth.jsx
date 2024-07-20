@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Login, SignUp } from "../../api/auth";
 import Cookies from "js-cookie";
 
@@ -44,6 +44,9 @@ function Auth() {
       setLoading(false);
     }
   };
+  if (Cookies.get("we_chat_token")) {
+    return <Navigate to="/chat" />;
+  }
   return (
     <div className="h-dvh flex flex-col justify-center items-center">
       <div className="max-sm:w-5/6 sm:w-96 md:w-1/2 lg:w-2/5 xl:w-1/3 rounded-xl shadow-2xl px-2 md:px-3 py-2">
