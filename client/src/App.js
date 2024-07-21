@@ -1,12 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
+// import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const Auth = lazy(() => import("./pages/Auth/Auth"));
 const OTP = lazy(() => import("./pages/OTP/OTP"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Chat = lazy(() => import("./pages/Chat/Chat"));
+const CreateUserName = lazy(() =>
+  import("./pages/CreateUserName/CreateUserName")
+);
 
 function App() {
   return (
@@ -23,6 +27,7 @@ function App() {
               path="/chat"
               element={<ProtectedRoute Component={<Chat />} />}
             /> */}
+            <Route path="/add-username" element={<CreateUserName />} />
             <Route path="/chat" element={<Chat />} />
           </Routes>
         </Suspense>

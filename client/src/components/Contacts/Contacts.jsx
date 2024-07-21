@@ -3,9 +3,13 @@ import ContactCard from "../ContactCard/ContactCard";
 function Contacts() {
   const arr = Array.from({ length: 10 }, (_, num) => num);
   return (
-    <div className="panel-p min-vh-[100%] divide-y-2">
+    <div className="panel-p max-md:max-h-[500px] min-h-[500px] divide-y-2">
       {arr.map((item, index) => {
-        return <ContactCard />;
+        return (
+          <div className="hover:bg-gray-300">
+            <ContactCard />
+          </div>
+        );
       })}
     </div>
   );
