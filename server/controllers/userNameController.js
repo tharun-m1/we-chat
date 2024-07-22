@@ -4,6 +4,10 @@ const errorHandler = require("../utils/errorHandler");
 const AddUserName = async (req, res, next) => {
   try {
     const { user_id, username } = req.body;
+    const regex = /^[a-z0-9_]+$/;
+    if (!regex.test(username)) {
+      return next(errorHandler(403, "INVALID_USER_NAME"));
+    }
     let user = await User.findOne({ _id: user_id }, { username: 1 });
     if (user) {
       user.username.username = username;
@@ -31,6 +35,11 @@ const AddUserName = async (req, res, next) => {
 const UpdateUserName = async (req, res, next) => {
   try {
     const { user_id, username } = req.body;
+    const regex = /^[a-z0-9_]+$/;
+
+    if (!regex.test(username)) {
+      return next(errorHandler(403, "INVALID_USER_NAME"));
+    }
     const doc = await User.findByIdAndUpdate(
       { _id: user_id },
       { username: { ...username, username: username } }
