@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const userNameRoutes = require("./routes/userNameRoutes.js");
 const mailTo = require("./services/mailer.js");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const app = express();
@@ -14,7 +15,13 @@ const server = createServer(app);
 const io = new Server(server, {
   connectionStateRecovery: {},
 });
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Replace with your frontend URL
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
