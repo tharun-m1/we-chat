@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
+const userNameRoutes = require("./routes/userNameRoutes.js");
 const mailTo = require("./services/mailer.js");
 require("dotenv").config();
 
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", authRoutes);
+app.use("/username", userNameRoutes);
 // ======================== Error Handler ===============================
 app.use((err, req, res, next) => {
   const status = err.status || 500;

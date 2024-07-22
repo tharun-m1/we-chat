@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { UserName, usernameSchema } = require("./username");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -11,11 +12,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // username: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
+    username: {
+      type: usernameSchema,
+      ref: "UserName",
+      default: null,
+    },
     members: [
       {
         type: mongoose.Schema.Types.ObjectId,

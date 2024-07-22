@@ -37,7 +37,7 @@ async function SignUp(req, res, next) {
 async function Login(req, res, next) {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }, { username: 1, password: 1 });
     if (!user) {
       return next(errorHandler(404, "User doesn't Exist!"));
     }
@@ -49,10 +49,12 @@ async function Login(req, res, next) {
       userId: user._id,
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET);
+    const user_data = user.username;
     return res.status(200).json({
       status: 200,
       message: "Login Successful!",
       token,
+      user_data,
     });
   } catch (error) {
     next(error);
