@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 app.use(
   cors({
-    origin: "http://localhost:3000", // Replace with your frontend URL
+    origin: "https://wechat-sand.vercel.app/", // Replace with your frontend URL
     credentials: true,
   })
 );
