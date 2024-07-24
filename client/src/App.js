@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
-// import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const Auth = lazy(() => import("./pages/Auth/Auth"));
 const OTP = lazy(() => import("./pages/OTP/OTP"));
@@ -23,12 +23,12 @@ function App() {
             <Route path="/signup" element={<Auth key="signup" />} />
             <Route path="/verify-otp" element={<OTP />} />
             <Route path="/login" element={<Auth key="login" />} />
-            {/* <Route
+            <Route
               path="/chat"
               element={<ProtectedRoute Component={<Chat />} />}
-            /> */}
+            />
             <Route path="/add-username" element={<CreateUserName />} />
-            <Route path="/chat" element={<Chat />} />
+            {/* <Route path="/chat" element={<Chat />} /> */}
           </Routes>
         </Suspense>
       </div>

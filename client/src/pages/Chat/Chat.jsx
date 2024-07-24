@@ -2,9 +2,9 @@ import React from "react";
 import Panel from "../../components/Panel/Panel";
 import ChatBox from "../../components/ChatBox/ChatBox";
 import { useSelector } from "react-redux";
-
 function Chat() {
   const chatBox = useSelector((state) => state.chatBox.value);
+
   return (
     <div className="h-dvh md:flex">
       <section

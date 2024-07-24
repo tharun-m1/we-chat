@@ -29,8 +29,12 @@ function Profile({ status = "own" }) {
     switch (op) {
       case "Logout": {
         const cookie = Cookies.get("we_chat_token");
+        const user_data = Cookies.get("user_data");
         if (cookie) {
           Cookies.remove("we_chat_token");
+        }
+        if (user_data) {
+          Cookies.remove("user_data");
         }
         return navigate("/login");
       }

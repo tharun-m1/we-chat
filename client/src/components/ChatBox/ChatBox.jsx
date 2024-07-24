@@ -20,8 +20,9 @@ function ChatBox() {
         </div>
         <div
           ref={chatAreaRef}
-          className="flex-grow p-3 overflow-scroll flex flex-col gap-2"
+          className="flex-grow p-3 overflow-scroll flex flex-col gap-2 max-md:pb-[100px]"
         >
+          c
           {arr.map((num) => {
             return <Message me={num % 2 === 0} />;
           })}

@@ -29,6 +29,11 @@ function Auth() {
           sameSite: "Strict",
           expires: 7,
         });
+        Cookies.set("user_data", res.data.user_data, {
+          secure: true,
+          sameSite: "Strict",
+          expires: 7,
+        });
         navigate("/chat", { replace: true });
         return;
       } else {

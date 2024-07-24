@@ -11,8 +11,14 @@ const isAuthenticated = () => {
 };
 function ProtectedRoute({ Component }) {
   const location = useLocation();
+  const user_data = Cookies.get("user_data");
+
   return isAuthenticated() ? (
-    <Suspense fallback={fb()}>{Component}</Suspense>
+    user_data !== "null" ? (
+      <Suspense fallback={fb()}>{Component}</Suspense>
+    ) : (
+      <Navigate to="/add-username" />
+    )
   ) : (
     <Navigate to="/login" state={{ from: location }} />
   );
