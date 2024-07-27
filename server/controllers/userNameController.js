@@ -5,8 +5,8 @@ const AddUserName = async (req, res, next) => {
   try {
     const { username } = req.body;
     const user_id = req.user_id;
-    console.log("from add", user_id);
-    const regex = /^[a-z0-9_]+$/;
+    const regex = /^(?=.*[a-z])[a-z0-9_]+$/;
+
     if (!regex.test(username)) {
       return next(errorHandler(403, "INVALID_USER_NAME"));
     }

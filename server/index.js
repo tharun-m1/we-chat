@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 app.use(
   cors({
-    origin: "https://wechat-sand.vercel.app/", // Replace with your frontend URL
+    origin: "http://localhost:3000", // Replace with your frontend URL
     credentials: true,
   })
 );
@@ -40,6 +40,18 @@ app.use((err, req, res, next) => {
   return res.status(status).json({
     status,
     message,
+  });
+});
+// ======================================================================
+
+// ================================= Socket =============================
+io.on("connection", (socket) => {
+  console.log(socket.id);
+  socket.on("message", (msg) => {
+    console.log(msg);
+  });
+  socket.on("disconnect", () => {
+    console.log("User Disconnected");
   });
 });
 // ======================================================================
