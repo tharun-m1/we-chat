@@ -65,7 +65,7 @@ function OTP() {
         <div className="max-sm:w-[80%] sm:w-[300px] max-sm:mt-[20%] mt-[80px] h-fit">
           <div className="text-center text-[0.9rem] font-mulish font-bold">
             we've sent 6 digit otp to <br />{" "}
-            <span className="text-blue-600">maddelatharun5@gmail.com</span>
+            <span className="text-blue-600">{location?.state?.email}</span>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="mt-3">

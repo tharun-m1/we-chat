@@ -21,6 +21,10 @@ export const AddUserName = async (username) => {
         err.status = 403;
         err.message = "Invalid username";
         throw err;
+      } else if (error.response.data.status === 400) {
+        err.status = 400;
+        err.message = "Username Taken! Try again.";
+        throw err;
       }
     }
     throw new Error("Something went wrong!");

@@ -93,7 +93,7 @@ export const Login = async (email, password) => {
         err.message = "Incorrect Password!";
         throw err;
       }
-      throw new Error("Something went wrong!");
     }
+    throw new Error(error.message);
   }
 };

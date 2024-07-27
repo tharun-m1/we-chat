@@ -4,7 +4,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Login, SignUp } from "../../api/auth";
 import Cookies from "js-cookie";
 
-function Auth() {
+function Auth({ status }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -24,12 +24,12 @@ function Auth() {
       if (location.pathname.includes("login")) {
         setLoading(true);
         const res = await Login(formData.email.trim(), formData.password);
-        Cookies.set("we_chat_token", res.data.token, {
+        Cookies.set("we_chat_token", res?.data?.token, {
           secure: true,
           sameSite: "Strict",
           expires: 7,
         });
-        Cookies.set("user_data", res.data.user_data, {
+        Cookies.set("user_data", res?.data.user_data, {
           secure: true,
           sameSite: "Strict",
           expires: 7,
@@ -44,7 +44,8 @@ function Auth() {
         });
       }
     } catch (error) {
-      toast.error(error.message);
+      console.log(error);
+      toast.error(error.message || "Something went Wrong!");
     } finally {
       setLoading(false);
     }
@@ -53,7 +54,10 @@ function Auth() {
     return <Navigate to="/chat" />;
   }
   return (
-    <div className="h-dvh flex flex-col justify-center items-center">
+    <div
+      key={status}
+      className="h-dvh flex flex-col justify-center items-center"
+    >
       <div className="max-sm:w-5/6 sm:w-96 md:w-1/2 lg:w-2/5 xl:w-1/3 rounded-xl shadow-2xl px-2 md:px-3 py-2">
         {/* caption */}
         <div className="font-mulish font-bold text-lg">

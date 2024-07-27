@@ -20,9 +20,9 @@ function App() {
         <Suspense fallback={fb()}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Auth key="signup" />} />
+            <Route path="/signup" element={<Auth status="signup" />} />
             <Route path="/verify-otp" element={<OTP />} />
-            <Route path="/login" element={<Auth key="login" />} />
+            <Route path="/login" element={<Auth status="login" />} />
             <Route
               path="/chat"
               element={<ProtectedRoute Component={<Chat />} />}
