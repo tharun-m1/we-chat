@@ -1,0 +1,8 @@
+.topCont {
+  background-image: url("../../assets/chatImage.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-color: black;
+  filter: brightness(1);
+}

@@ -28,11 +28,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Background of the scrollbar track */
+  background: #8d8b8b; /* Background of the scrollbar track */
   border-radius: 10px; /* Rounded corners for the scrollbar track */
 }
 ::-webkit-scrollbar-thumb {
-  background: #888; /* Color of the scrollbar handle */
+  background: #4d4b4b; /* Color of the scrollbar handle */
   border-radius: 10px; /* Rounded corners for the scrollbar handle */
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -43,4 +43,10 @@
   resize: none;
   --max-lines: 10;
   max-height: calc(var(--max-lines) * 1.5);
+}
+.service-btn {
+  @apply border-white p-3 bg-orange-300 hover:bg-orange-400;
+}
+.contact-btn {
+  @apply border-white p-3 hover:bg-slate-300;
 }
