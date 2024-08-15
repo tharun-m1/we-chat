@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeChatBox } from "../../redux/chatBoxSlice";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { disconnect_socket } from "../../sockets/set_up_ws";
 
 const getOptions = (status) => {
   if (status === "own") {
@@ -36,6 +37,7 @@ function Profile({ status = "own" }) {
         if (user_data) {
           Cookies.remove("user_data");
         }
+        disconnect_socket();
         return navigate("/login");
       }
       case "Close chat": {

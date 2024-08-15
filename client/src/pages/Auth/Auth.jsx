@@ -29,7 +29,7 @@ function Auth({ status }) {
           sameSite: "Strict",
           expires: 7,
         });
-        Cookies.set("user_data", res?.data.user_data, {
+        Cookies.set("user_data", JSON.stringify(res?.data.user_data), {
           secure: true,
           sameSite: "Strict",
           expires: 7,
