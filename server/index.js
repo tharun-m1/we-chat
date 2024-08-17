@@ -4,11 +4,13 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const authRoutes = require("./routes/authRoutes");
-const userNameRoutes = require("./routes/userNameRoutes.js");
 const mailTo = require("./services/mailer.js");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
+
+const authRoutes = require("./routes/authRoutes");
+const userNameRoutes = require("./routes/userNameRoutes.js");
+const contactRoutes = require("./routes/contactRoutes.js");
 
 const app = express();
 const server = createServer(app);
@@ -33,6 +35,7 @@ app.get("/", (req, res) => {
 
 app.use("/", authRoutes);
 app.use("/username", userNameRoutes);
+app.use("/", contactRoutes);
 // ======================== Error Handler ===============================
 app.use((err, req, res, next) => {
   const status = err.status || 500;
@@ -43,12 +46,15 @@ app.use((err, req, res, next) => {
   });
 });
 // ======================================================================
-
+const activeUsers = {};
 // ================================= Socket =============================
 io.on("connection", (socket) => {
-  console.log(socket.id);
-  socket.on("message", (msg) => {
-    console.log(msg);
+  console.log("User connected");
+
+  socket.on("online", (id) => {
+    console.log("user id is", id);
+    activeUsers[id] = true;
+    console.log("activeUsers\n", activeUsers);
   });
   socket.on("disconnect", () => {
     console.log("User Disconnected");
