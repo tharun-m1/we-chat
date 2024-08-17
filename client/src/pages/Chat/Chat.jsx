@@ -3,7 +3,12 @@ import Panel from "../../components/Panel/Panel";
 import ChatBox from "../../components/ChatBox/ChatBox";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
-import { connect_socket, disconnect_socket } from "../../sockets/set_up_ws";
+import {
+  connect_socket,
+  disconnect_socket,
+  get_socket,
+} from "../../sockets/set_up_ws";
+import { send_user } from "../../sockets/emitters";
 
 function Chat() {
   const chatBox = useSelector((state) => state.chatBox.value);
@@ -11,6 +16,10 @@ function Chat() {
   useEffect(() => {
     const user_data = JSON.parse(Cookies.get("user_data"));
     connect_socket();
+    const socket = get_socket();
+    socket.on("connect", () => {
+      send_user(user_data.user_id);
+    });
 
     return () => {
       disconnect_socket();
